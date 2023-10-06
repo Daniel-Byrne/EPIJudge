@@ -8,8 +8,23 @@ import java.util.List;
 public class SearchEntryEqualToIndex {
 
   public static int searchEntryEqualToItsIndex(List<Integer> A) {
-    // TODO - you fill in here.
-    return 0;
+    int l = 0;
+    int r = A.size() - 1;
+
+    while (l <= r) {
+      int mid = l + ((r - l) / 2);
+      int diff = A.get(mid) - mid;
+
+      if (diff == 0) {
+        return mid;
+      } else if (diff > 0){
+        r = mid - 1;
+      } else {
+        l = mid + 1;
+      }
+    }
+
+    return -1;
   }
   @EpiTest(testDataFile = "search_entry_equal_to_index.tsv")
   public static void searchEntryEqualToItsIndexWrapper(TimedExecutor executor,
